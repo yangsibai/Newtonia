@@ -22,6 +22,11 @@ func main() {
 	 */
 	router := NewRouter()
 	log.Fatal(http.ListenAndServe(":8080", router))
+	err, result := search("go")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(result.responseData)
 }
 
 type Result struct {
