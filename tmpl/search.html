@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{{ .Title }}</title>
+    </head>
+    <body>
+        <div>
+        {{ range .SearchResult.ResponseData.Results }}
+            <h3><a href="{{ .Url }}">{{ .TitleNoFormatting }}</a></h3>
+            <div>
+                <div><span>{{ .VisibleUrl }}</span></div>
+                <p>{{ .Content }}</p>
+            </div>
+        {{ end }}
+        </div>
+    </body>
+</html>

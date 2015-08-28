@@ -3,9 +3,8 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	//"net/http"
+	"net/http"
 )
 
 func main() {
@@ -18,18 +17,13 @@ func main() {
 	 *}
 	 *fmt.Println(result)
 	 */
-	err, result := GoogleSearch("node")
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(result)
 	/*
-	 *router := NewRouter()
-	 *log.Fatal(http.ListenAndServe(":8080", router))
-	 *err, result := search("go")
+	 *err, result := GoogleSearch("node")
 	 *if err != nil {
 	 *    log.Fatal(err)
 	 *}
-	 *fmt.Println(result.responseData)
+	 *fmt.Println(result)
 	 */
+	router := NewRouter()
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
