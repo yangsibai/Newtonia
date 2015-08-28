@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -43,7 +42,6 @@ func GoogleSearch(word string) (error, SearchResult) {
 		return TestGoogleSearch(word)
 	case "PRODUCTION":
 		url := "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&rsz=8&hl=zh&q=" + word
-		fmt.Println(url)
 		res, err := http.Get(url)
 		if err != nil {
 			return err, result
@@ -53,7 +51,6 @@ func GoogleSearch(word string) (error, SearchResult) {
 		if err != nil {
 			return err, result
 		}
-		fmt.Println(body)
 		err = json.Unmarshal(body, &result)
 		if err != nil {
 			return err, result
@@ -65,7 +62,6 @@ func GoogleSearch(word string) (error, SearchResult) {
 }
 
 func TestGoogleSearch(word string) (error, SearchResult) {
-	fmt.Println(os.Getenv("go_env"))
 	byt := []byte(`
 	{
 		"responseData": {
