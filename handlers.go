@@ -1,16 +1,21 @@
 package main
 
 import (
-	//"encoding/json"
-	"fmt"
-	//"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
 	"path"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Welcome!")
+	tmpl, err := template.ParseFiles(path.Join("tmpl", "index.html"))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	if err := tmpl.Execute(w, nil); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 type PageData struct {
@@ -20,9 +25,13 @@ type PageData struct {
 
 func Search(w http.ResponseWriter, r *http.Request) {
 	words := r.URL.Query()["q"]
+	if words[0] == "" {
+		http.Redirect(w, r, "/", 307)
+		return
+	}
 	err, searchResult := GoogleSearch(words[0])
 	if err != nil {
-		fmt.Fprintln(w, "error")
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
