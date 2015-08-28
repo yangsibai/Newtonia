@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"errors"
+	"html/template"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -11,14 +12,14 @@ import (
 type SearchResult struct {
 	ResponseData struct {
 		Results []struct {
-			GsearchResultClass string `json:"GsearchResultClass"`
-			UnescapedUrl       string `json:"unescapedUrl"`
-			Url                string `json:"url"`
-			VisibleUrl         string `json:"visibleUrl"`
-			CacheUrl           string `json:"cacheUrl"`
-			Title              string `json:"title"`
-			TitleNoFormatting  string `json:"titleNoFormatting"`
-			Content            string `json:"content"`
+			GsearchResultClass string        `json:"GsearchResultClass"`
+			UnescapedUrl       string        `json:"unescapedUrl"`
+			Url                string        `json:"url"`
+			VisibleUrl         string        `json:"visibleUrl"`
+			CacheUrl           string        `json:"cacheUrl"`
+			Title              string        `json:"title"`
+			TitleNoFormatting  string        `json:"titleNoFormatting"`
+			Content            template.HTML `json:"content"`
 		} `json:"results"`
 		Cursor struct {
 			ResultCount string `json:"resultCount"`
