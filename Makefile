@@ -3,3 +3,6 @@ build:
 
 test: build
 	go run *.go
+
+run:
+	nohup go run *.go>/dev/null 2>&1 &
