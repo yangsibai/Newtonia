@@ -2,14 +2,23 @@
 <html>
     <head>
         <title>{{ .Title }}</title>
+        <link rel="stylesheet" href="/css/style.css">
     </head>
-    <body>
-        <div>
+    <body class="search">
+        <div class="search_box">
+            <form method="GET" action="/search" enctype="application/x-www-form-urlencoded">
+                <input class="keyword" type="TEXT" name="q" value="{{ .Title }}">
+                <button class="search_btn" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="results">
         {{ range .SearchResult.ResponseData.Results }}
-            <h3><a href="{{ .Url }}">{{ .TitleNoFormatting }}</a></h3>
-            <div>
-                <div><span>{{ .VisibleUrl }}</span></div>
-                <p>{{ .Content }}</p>
+            <div class="result">
+                <h3><a href="{{ .Url }}">{{ .Title }}</a></h3>
+                <div>
+                    <div><span>{{ .VisibleUrl }}</span></div>
+                    <p>{{ .Content }}</p>
+                </div>
             </div>
         {{ end }}
         </div>

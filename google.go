@@ -18,7 +18,7 @@ type SearchResult struct {
 			Url                string        `json:"url"`
 			VisibleUrl         string        `json:"visibleUrl"`
 			CacheUrl           string        `json:"cacheUrl"`
-			Title              string        `json:"title"`
+			Title              template.HTML `json:"title"`
 			TitleNoFormatting  string        `json:"titleNoFormatting"`
 			Content            template.HTML `json:"content"`
 		} `json:"results"`
