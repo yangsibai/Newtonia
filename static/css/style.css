@@ -138,6 +138,7 @@ body {
 }
 .home .search_box {
   width: 600px;
+  margin: auto;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
