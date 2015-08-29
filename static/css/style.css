@@ -140,19 +140,28 @@ body {
   width: 600px;
   margin: auto;
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 20%;
 }
 .home .search_box input[type=text] {
   width: 400px;
-  height: 30px;
+  height: 40px;
   font-size: 16px;
   padding: 2px 5px;
+  border: 1px solid #aaaaaa;
+  border-right: none;
+  float: left;
+  box-sizing: border-box;
+}
+.home .search_box input[type=text]:focus {
+  outline: none;
+  border: 1px solid #3464e3;
 }
 .home .search_box button {
   width: 100px;
-  height: 38px;
-  border: 1px solid #ddd;
+  height: 40px;
+  border: 1px solid #aaaaaa;
   background: #503C53;
   color: #ffffff;
+  margin-left: -1px;
+  box-sizing: border-box;
 }
