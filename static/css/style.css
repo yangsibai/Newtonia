@@ -165,3 +165,21 @@ body {
   margin-left: -1px;
   box-sizing: border-box;
 }
+.home .footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  padding: 3px 0;
+}
+.home .footer span {
+  color: #aaa;
+}
+.home .footer span a {
+  color: #3464e3;
+}
+.home .footer .author {
+  margin-left: 5px;
+}
