@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"os"
 )
 
@@ -42,8 +43,18 @@ func GoogleSearch(word string) (error, SearchResult) {
 	case "DEVELOPMENT":
 		return TestGoogleSearch(word)
 	case "PRODUCTION":
-		url := "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&rsz=8&hl=zh&q=" + word
-		res, err := http.Get(url)
+		var Url *url.URL
+		Url, err := url.Parse("https://ajax.googleapis.com/ajax/services/search/web")
+		if err != nil {
+			return err, result
+		}
+		parameters := url.Values{}
+		parameters.Add("v", "1.0")
+		parameters.Add("rsz", "8")
+		parameters.Add("hl", "zh")
+		parameters.Add("q", word)
+		Url.RawQuery = parameters.Encode()
+		res, err := http.Get(Url.String())
 		if err != nil {
 			return err, result
 		}
