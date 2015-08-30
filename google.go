@@ -37,7 +37,7 @@ type SearchResult struct {
 	ResponseStatus uint16 `json:"responseStatus"`
 }
 
-func GoogleSearch(word string) (error, SearchResult) {
+func GoogleSearch(word string, start int64) (error, SearchResult) {
 	var result SearchResult
 	switch env := os.Getenv("go_env"); env {
 	case "DEVELOPMENT":
@@ -51,8 +51,10 @@ func GoogleSearch(word string) (error, SearchResult) {
 		parameters := url.Values{}
 		parameters.Add("v", "1.0")
 		parameters.Add("rsz", "8")
-		parameters.Add("hl", "zh")
 		parameters.Add("q", word)
+		parameters.Add("start", string(start))
+		//parameters.Add("hl", "zh")
+		//parameters.Add("userip", "")
 		Url.RawQuery = parameters.Encode()
 		res, err := http.Get(Url.String())
 		if err != nil {
@@ -156,7 +158,49 @@ func TestGoogleSearch(word string) (error, SearchResult) {
 				"cacheUrl":"http://www.google.com/search?q\u003dcache:TJQBE5kNrvsJ:azure.microsoft.com",
 				"title":"\u003cb\u003eNode\u003c/b\u003e.\u003cb\u003ejs\u003c/b\u003e Developer Center - Microsoft Azure",
 				"titleNoFormatting":"Node.js Developer Center - Microsoft Azure",
-				"content":"\u003cb\u003eNode\u003c/b\u003e.\u003cb\u003ejs\u003c/b\u003e Developer Center. Windows Azure SDK for \u003cb\u003eNode\u003c/b\u003e.\u003cb\u003ejs\u003c/b\u003e. Support for \ndeploying Windows Azure Websites, Virtual Machines, and Mobile Services, \nconfiguring ..."}],"cursor":{"resultCount":"5,040,000","pages":[{"start":"0","label":1},{"start":"8","label":2},{"start":"16","label":3},{"start":"24","label":4},{"start":"32","label":5},{"start":"40","label":6},{"start":"48","label":7},{"start":"56","label":8}],"estimatedResultCount":"5040000","currentPageIndex":0,"moreResultsUrl":"http://www.google.com/search?oe\u003dutf8\u0026ie\u003dutf8\u0026source\u003duds\u0026start\u003d0\u0026hl\u003dzh-CN\u0026q\u003dnode.js","searchResultTime":"0.24"
+				"content":"\u003cb\u003eNode\u003c/b\u003e.\u003cb\u003ejs\u003c/b\u003e Developer Center. Windows Azure SDK for \u003cb\u003eNode\u003c/b\u003e.\u003cb\u003ejs\u003c/b\u003e. Support for \ndeploying Windows Azure Websites, Virtual Machines, and Mobile Services, \nconfiguring ..."
+			}
+		],
+		"cursor":{
+			"resultCount":"5,040,000",
+			"pages":[
+				{
+					"start":"0",
+					"label":1
+				},
+				{
+					"start":"8",
+					"label":2
+				},
+				{
+					"start":"16",
+					"label":3
+				},
+				{
+					"start":"24",
+					"label":4
+				},
+				{
+					"start":"32",
+					"label":5
+				},
+				{
+					"start":"40",
+					"label":6
+				},
+				{
+					"start":"48",
+					"label":7
+				},
+				{
+					"start":"56",
+					"label":8
+				}
+			],
+			"estimatedResultCount":"5040000",
+			"currentPageIndex":0,
+			"moreResultsUrl":"http://www.google.com/search?oe\u003dutf8\u0026ie\u003dutf8\u0026source\u003duds\u0026start\u003d0\u0026hl\u003dzh-CN\u0026q\u003dnode.js",
+			"searchResultTime":"0.24"
 			}
 		},
 		"responseDetails": null,

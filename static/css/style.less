@@ -1,3 +1,5 @@
+@color-blue: #3464e3;
+@color-red: #D45551;
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -65,7 +67,7 @@ html, body{
 
 .keyword:focus {
      outline: none;
-     border: 1px solid #3464e3;
+     border: 1px solid @color-blue;
 }
 
 .search_btn {
@@ -135,7 +137,36 @@ html, body{
                 }
             }
             b {
-                 color: #D45551;
+                 color: @color-red;
+            }
+        }
+    }
+    .cursor {
+        margin-bottom: 20px;
+        ul {
+            li {
+                display: inline;
+                margin: 0 5px;
+                a {
+                    text-decoration: none;
+                    font-size: 14px;
+                    color: @color-blue;
+                    display: inline-block;
+                    border: 1px solid @color-blue;
+                    padding: 5px 10px;
+                    font-size: 12px;
+                }
+                a:visited {
+                    color: @color-blue;
+                }
+                a:hover {
+                    background-color: @color-blue;
+                    color: #ffffff;
+                }
+                .current {
+                     border-color: @color-red;
+                     color: @color-red;
+                }
             }
         }
     }

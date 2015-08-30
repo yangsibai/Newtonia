@@ -24,5 +24,18 @@
             </div>
         {{ end }}
         </div>
+        <div class="cursor">
+            <ul class="labels">
+            {{ range $index, $element := .SearchResult.ResponseData.Cursor.Pages }}
+            <li>
+                {{ if eq $index $.CurrentPage }}
+                <a class="current" href="/search?q={{ $.Title }}&start={{ $element.Start }}">{{ $element.Label }}</a>
+                {{ else }}
+                <a href="/search?q={{ $.Title }}&start={{ $element.Start }}">{{ $element.Label }}</a>
+                {{ end }}
+            </li>
+            {{ end }}
+            </ul>
+        </div>
     </body>
 </html>

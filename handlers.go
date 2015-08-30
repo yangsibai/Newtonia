@@ -1,9 +1,11 @@
 package main
 
 import (
+	//"fmt"
 	"html/template"
 	"net/http"
 	"path"
+	"strconv"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -21,6 +23,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 type PageData struct {
 	Title        string
 	SearchResult SearchResult
+	CurrentPage  uint16
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
@@ -29,7 +32,16 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", 307)
 		return
 	}
-	err, searchResult := GoogleSearch(words[0])
+	var startAt int64 = 0
+	var err error
+	startAt = 0
+	start := r.URL.Query()["start"]
+	if start != nil && start[0] != "" {
+		if startAt, err = strconv.ParseInt(start[0], 10, 32); err != nil {
+			startAt = 0
+		}
+	}
+	err, searchResult := GoogleSearch(words[0], startAt)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -41,7 +53,8 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pageData := PageData{words[0], searchResult}
+	pageData := PageData{words[0], searchResult, searchResult.ResponseData.Cursor.CurrentPageIndex}
+
 	if err := tmpl.Execute(w, pageData); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

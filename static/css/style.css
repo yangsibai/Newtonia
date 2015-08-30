@@ -209,5 +209,32 @@ body {
   line-height: 1.4em;
 }
 .search .results .result b {
-  color: #D45551;
+  color: #d45551;
+}
+.search .cursor {
+  margin-bottom: 20px;
+}
+.search .cursor ul li {
+  display: inline;
+  margin: 0 5px;
+}
+.search .cursor ul li a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #3464e3;
+  display: inline-block;
+  border: 1px solid #3464e3;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+.search .cursor ul li a:visited {
+  color: #3464e3;
+}
+.search .cursor ul li a:hover {
+  background-color: #3464e3;
+  color: #ffffff;
+}
+.search .cursor ul li .current {
+  border-color: #d45551;
+  color: #d45551;
 }
