@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strconv"
 )
 
 type SearchResult struct {
@@ -52,7 +53,7 @@ func GoogleSearch(word string, start int64) (error, SearchResult) {
 		parameters.Add("v", "1.0")
 		parameters.Add("rsz", "8")
 		parameters.Add("q", word)
-		parameters.Add("start", string(start))
+		parameters.Add("start", strconv.Itoa(start))
 		//parameters.Add("hl", "zh")
 		//parameters.Add("userip", "")
 		Url.RawQuery = parameters.Encode()
