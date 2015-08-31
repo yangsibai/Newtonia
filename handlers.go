@@ -1,7 +1,6 @@
 package main
 
 import (
-	//"fmt"
 	"html/template"
 	"net/http"
 	"path"
@@ -27,6 +26,12 @@ type PageData struct {
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
+	var userip string
+	if len(r.Header["x-forwarded-for"]) != 0 {
+		userip = r.Header["x-forwarded-for"][0]
+	} else {
+		userip = r.RemoteAddr
+	}
 	words := r.URL.Query()["q"]
 	if words[0] == "" {
 		http.Redirect(w, r, "/", 307)
@@ -41,7 +46,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 			startAt = 0
 		}
 	}
-	err, searchResult := GoogleSearch(words[0], startAt)
+	err, searchResult := GoogleSearch(words[0], startAt, userip)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
