@@ -1,5 +1,7 @@
 @color-blue: #3464e3;
 @color-red: #D45551;
+@color-gray: #aaaaaa;
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -59,9 +61,8 @@ html, body{
     height: 40px;
     font-size: 16px;
     padding: 2px 5px;
-    border: 1px solid #aaaaaa;
+    border: 1px solid @color-gray;
     border-right: none;
-    float: left;
     box-sizing: border-box;
 }
 
@@ -73,11 +74,54 @@ html, body{
 .search_btn {
     width: 100px;
     height: 40px;
-    border: 1px solid #aaaaaa;
+    border: 1px solid @color-gray;
     background: #503C53;
     color: #ffffff;
     margin-left: -1px;
     box-sizing: border-box;
+}
+
+@media (max-width:1100px) {
+    .search_box {
+        top: 50%;
+        text-align: center;
+        transform: translateY(-50%);
+        .keyword {
+            width: 90%;
+            border-right: 1px solid @color-gray;
+        }
+        .search_btn {
+            margin-top: 20px;
+            margin-left: 0;
+        }
+    }
+    .search {
+        .search_box {
+            height: auto;
+            transform: none;
+            top: none;
+            text-align: left;
+            margin-bottom: 0;
+            .search_btn {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1100px) {
+    .search_box {
+        width: 600px;
+        top: 20%;
+        .keyword {
+            float: left;
+        }
+    }
+    .search {
+        .search_box {
+            margin-bottom: 20px;
+        }
+    }
 }
 
 .home {
@@ -85,10 +129,8 @@ html, body{
     height: 100%;
     position: static;
     .search_box {
-        width: 600px;
         margin: auto;
         position: relative;
-        top: 20%;
     }
     .footer {
          position: absolute;
@@ -99,9 +141,9 @@ html, body{
          font-size: 12px;
          padding: 3px 0;
          span {
-             color: #aaa;
+             color: @color-gray;
              a {
-                 color: #3464e3;
+                 color: @color-blue;
              }
          }
          .author {
@@ -111,11 +153,8 @@ html, body{
 }
 
 .search {
+    box-sizing: border-box;
     padding: 20px;
-    .search_box {
-        height: 40px;
-        margin-bottom: 20px;
-    }
     .results {
         .result {
             margin: 30px 0;
@@ -127,7 +166,7 @@ html, body{
                     margin: 5px 0 10px;
                     span {
                         font-size: 14px;
-                        color: #aaa;
+                        color: @color-gray;
                     }
                 }
                 p {
@@ -151,19 +190,9 @@ html, body{
                     text-decoration: none;
                     font-size: 14px;
                     color: @color-blue;
-                    display: inline-block;
-                    border: 1px solid @color-blue;
-                    padding: 5px 10px;
-                    font-size: 12px;
                 }
-                a:hover {
-                    background-color: @color-blue;
-                    color: #ffffff;
-                }
-                .current {
-                     background-color: @color-red;
-                     border-color: @color-red;
-                     color: #ffffff;
+                a:visited {
+                    color: @color-blue;
                 }
             }
         }
