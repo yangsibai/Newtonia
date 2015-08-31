@@ -27,8 +27,8 @@ type PageData struct {
 
 func Search(w http.ResponseWriter, r *http.Request) {
 	var userip string
-	if len(r.Header["x-forwarded-for"]) != 0 {
-		userip = r.Header["x-forwarded-for"][0]
+	if len(r.Header["X-Forwarded-For"]) != 0 {
+		userip = r.Header["X-Forwarded-For"][0]
 	} else {
 		userip = r.RemoteAddr
 	}
