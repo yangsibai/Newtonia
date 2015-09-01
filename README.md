@@ -10,18 +10,15 @@ It's very simple and only request the api, so it's very fast.
 
 ##Installation
 
-`
-git clone https://github.com/yangsibai/g.sibo.io.git
-cd g.sibo.io/
-git get
-git run *.go
-`
+    git clone https://github.com/yangsibai/g.sibo.io.git
+    cd g.sibo.io/
+    git get
+    git run *.go
 
 usage:
 
-`
-curl http://127.0.0.1:8080/
-`
+    curl http://127.0.0.1:8080/
+    curl http://127.0.0.1:8080/search?q=go
 
 ##Limitation
 
