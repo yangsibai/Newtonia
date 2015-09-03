@@ -253,7 +253,14 @@ body {
   text-decoration: none;
   font-size: 14px;
   color: #3464e3;
+  padding: 4px 5px 2px;
 }
-.search .cursor ul li a:visited {
-  color: #3464e3;
+.search .cursor ul li a:hover {
+  background-color: #3464e3;
+  color: #ffffff;
+}
+.search .cursor ul li .current {
+  background-color: #d45551;
+  border-color: #d45551;
+  color: #ffffff;
 }

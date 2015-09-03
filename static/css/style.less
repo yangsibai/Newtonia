@@ -147,7 +147,7 @@ html, body{
              }
          }
          .author {
-              margin-left: 5px;
+             margin-left: 5px;
          }
     }
 }
@@ -190,9 +190,16 @@ html, body{
                     text-decoration: none;
                     font-size: 14px;
                     color: @color-blue;
+                    padding: 4px 5px 2px;
                 }
-                a:visited {
-                    color: @color-blue;
+                a:hover {
+                     background-color: @color-blue;
+                     color: #ffffff;
+                }
+                .current {
+                    background-color: @color-red;
+                    border-color: @color-red;
+                    color: #ffffff;
                 }
             }
         }
