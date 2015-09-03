@@ -26,27 +26,15 @@ type PageData struct {
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
-	var userip string
-	if len(r.Header["X-Forwarded-For"]) != 0 {
-		userip = r.Header["X-Forwarded-For"][0]
-	} else {
-		userip = r.RemoteAddr
-	}
-	words := r.URL.Query()["q"]
-	if words[0] == "" {
+	word := getQuery(r)
+	if word == "" {
 		http.Redirect(w, r, "/", 307)
 		return
 	}
-	var startAt int64 = 0
-	var err error
-	startAt = 0
-	start := r.URL.Query()["start"]
-	if start != nil && start[0] != "" {
-		if startAt, err = strconv.ParseInt(start[0], 10, 32); err != nil {
-			startAt = 0
-		}
-	}
-	err, searchResult := GoogleSearch(words[0], startAt, userip)
+	userip := getUserIP(r)
+	startAt := getStart(r)
+	lang := getLanguage(r)
+	err, searchResult := GoogleSearch(word, startAt, userip, lang)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -58,10 +46,41 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pageData := PageData{words[0], searchResult, searchResult.ResponseData.Cursor.CurrentPageIndex}
+	pageData := PageData{word, searchResult, searchResult.ResponseData.Cursor.CurrentPageIndex}
 
 	if err := tmpl.Execute(w, pageData); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+}
+
+func getUserIP(r *http.Request) string {
+	if len(r.Header["X-Forwarded-For"]) != 0 {
+		return r.Header["X-Forwarded-For"][0]
+	} else {
+		return r.RemoteAddr
+	}
+}
+
+func getQuery(r *http.Request) string {
+	words := r.URL.Query()["q"]
+	return words[0]
+}
+
+func getStart(r *http.Request) int64 {
+	start := r.URL.Query()["start"]
+	if start != nil && start[0] != "" {
+		startAt, _ := strconv.ParseInt(start[0], 10, 32)
+		return startAt
+	}
+	return 0
+}
+
+func getLanguage(r *http.Request) string {
+	lang := "us"
+	languages := r.Header["Accept-Language"]
+	if len(languages) > 0 {
+		return languages[0]
+	}
+	return lang
 }

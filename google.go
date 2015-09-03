@@ -38,7 +38,7 @@ type SearchResult struct {
 	ResponseStatus uint16 `json:"responseStatus"`
 }
 
-func GoogleSearch(word string, start int64, userip string) (error, SearchResult) {
+func GoogleSearch(word string, start int64, userip string, language string) (error, SearchResult) {
 	var result SearchResult
 	switch env := os.Getenv("go_env"); env {
 	case "DEVELOPMENT":
@@ -54,7 +54,7 @@ func GoogleSearch(word string, start int64, userip string) (error, SearchResult)
 		parameters.Add("rsz", "8")
 		parameters.Add("q", word)
 		parameters.Add("start", strconv.Itoa(int(start)))
-		//parameters.Add("hl", "zh")
+		parameters.Add("hl", language)
 		parameters.Add("userip", userip)
 		Url.RawQuery = parameters.Encode()
 		res, err := http.Get(Url.String())
