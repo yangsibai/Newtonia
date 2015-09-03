@@ -22,5 +22,5 @@ usage:
 
 ##Limitation
 
-1. Google Web Search Api has been deprecated
-2. Google Web Search Api has a request limitaion every day, but I can't find the official document, someone from stackoverflow says it's 100/day.
+1. Google Web Search Api has been deprecated, it may stop service someday.
+2. Google Web Search Api has a request limitation, but I can't find the official document, someone from stackoverflow says it's 100/day. It's enough for personal use.
