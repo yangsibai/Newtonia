@@ -29,6 +29,6 @@ usage:
 
 ##About the name
 
-Newtonia is a genus of [vanga bird](https://en.wikipedia.org/wiki/Vanga). [wiki](https://en.wikipedia.org/wiki/Newtonia_%28bird%29)
+[Newtonia](https://en.wikipedia.org/wiki/Newtonia_%28bird%29) is a genus of [vanga bird](https://en.wikipedia.org/wiki/Vanga). 
 
 ![Newtonia](./newtonia.jpg)
