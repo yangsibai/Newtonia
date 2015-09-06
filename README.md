@@ -1,4 +1,6 @@
-#Custom Google Search
+#Newtonia
+
+A Google Search for personal use.
 
 ##Why?
 
@@ -24,3 +26,9 @@ usage:
 
 1. Google Web Search Api has been deprecated, it may stop service someday.
 2. Google Web Search Api has a request limitation, but I can't find the official document, someone from stackoverflow says it's 100/day. It's enough for personal use.
+
+##About the name
+
+Newtonia is a genus of [vanga bird](https://en.wikipedia.org/wiki/Vanga). [wiki](https://en.wikipedia.org/wiki/Newtonia_%28bird%29)
+
+![Newtonia](./newtonia.jpg)
