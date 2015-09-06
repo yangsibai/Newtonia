@@ -12,8 +12,8 @@ It's very simple and only request the api, so it's very fast.
 
 ##Installation
 
-    git clone https://github.com/yangsibai/g.sibo.io.git
-    cd g.sibo.io/
+    git clone https://github.com/yangsibai/Newtonia.git
+    cd Newtonia/
     git get
     git run *.go
 
