@@ -1,13 +1,13 @@
 PORT := 8080
 
 build:
-	go build
+	go build -o Newtonia
 
 test: build
 	go run *.go
 
 run: stop build
-	nohup ./newtonia>/dev/null 2>&1 &
+	nohup ./Newtonia>/dev/null 2>&1 &
 
 stop:
 	-lsof -t -i:${PORT} | xargs kill
