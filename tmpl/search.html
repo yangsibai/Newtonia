@@ -16,7 +16,7 @@
         <div class="results">
         {{ range .SearchResult.ResponseData.Results }}
             <div class="result">
-                <h3><a href="{{ .Url }}">{{ .Title }}</a></h3>
+                <h3><a href="{{ .UnescapedUrl }}">{{ .Title }}</a></h3>
                 <div>
                     <div><span>{{ .VisibleUrl }}</span></div>
                     <p>{{ .Content }}</p>
