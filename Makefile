@@ -6,7 +6,7 @@ build:
 test: build
 	go run *.go
 
-run: stop
+run: stop build
 	nohup ./newtonia>/dev/null 2>&1 &
 
 stop:
