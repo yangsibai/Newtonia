@@ -1,13 +1,13 @@
 PORT := 8080
 
 build:
-	cd static/css/;lessc style.less > style.css
+	go build
 
 test: build
 	go run *.go
 
 run: stop
-	nohup go run *.go>/dev/null 2>&1 &
+	nohup ./newtonia>/dev/null 2>&1 &
 
 stop:
 	-lsof -t -i:${PORT} | xargs kill
