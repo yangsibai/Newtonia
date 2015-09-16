@@ -10,6 +10,6 @@ run: stop
 	nohup go run *.go>/dev/null 2>&1 &
 
 stop:
-	lsof -i tcp:${PORT} | awk 'NR!=1 {print $$2}' | xargs kill
+	lsof -t -i:${PORT} | xargs kill
 
 .PHONY: build, run, test
