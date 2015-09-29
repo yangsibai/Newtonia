@@ -1,9 +1,12 @@
 PORT := 8080
 
+less:
+	lessc static/css/style.less static/css/style.css
+
 build:
 	go build -o Newtonia
 
-test: build
+test: less build
 	go run *.go
 
 run: stop build

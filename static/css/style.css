@@ -226,6 +226,7 @@ body {
 }
 .search .results .result h3 {
   font-size: 16px;
+  line-height: 1.4em;
 }
 .search .results .result > div > div {
   margin: 5px 0 10px;
@@ -254,13 +255,11 @@ body {
   font-size: 14px;
   color: #3464e3;
   padding: 4px 5px 2px;
+  border: 1px solid transparent;
 }
 .search .cursor ul li a:hover {
-  background-color: #3464e3;
-  color: #ffffff;
+  border: 1px solid #3464e3;
 }
 .search .cursor ul li .current {
-  background-color: #d45551;
-  border-color: #d45551;
-  color: #ffffff;
+  border: 1px solid #3464e3;
 }
