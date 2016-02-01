@@ -14,8 +14,8 @@ It's very simple and only request the api, so it's very fast.
 
     git clone https://github.com/yangsibai/Newtonia.git
     cd Newtonia/
-    git get
-    git run *.go
+    go get
+    go run *.go
 
 usage:
 
