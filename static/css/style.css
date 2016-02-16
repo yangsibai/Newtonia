@@ -126,6 +126,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+html {
+  height: 100%;
+}
 html,
 body {
   width: 100%;
@@ -161,7 +164,6 @@ body {
   }
   .search_box .keyword {
     width: 90%;
-    border-radius: 0;
     border-right: 1px solid #aaaaaa;
     -webkit-appearance: none;
   }
@@ -207,7 +209,7 @@ body {
 .home .footer {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 10px;
   width: 100%;
   text-align: center;
   font-size: 12px;
@@ -249,7 +251,7 @@ body {
   color: #d45551;
 }
 .search .cursor {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .search .cursor ul li {
   display: inline;
