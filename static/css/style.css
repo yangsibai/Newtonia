@@ -129,7 +129,6 @@ table {
 html,
 body {
   width: 100%;
-  height: 100%;
   font-family: "Microsoft YaHei", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", sans-serif;
 }
 .keyword {
@@ -162,7 +161,12 @@ body {
   }
   .search_box .keyword {
     width: 90%;
+    border-radius: 0;
     border-right: 1px solid #aaaaaa;
+    -webkit-appearance: none;
+  }
+  .search_box .keyword:focus {
+    border-right: 1px solid #3464e3;
   }
   .search_box .search_btn {
     margin-top: 20px;
