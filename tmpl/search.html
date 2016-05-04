@@ -14,28 +14,35 @@
             </form>
         </div>
         <div class="results">
-        {{ range .SearchResult.ResponseData.Results }}
+        {{ range .SearchResult.Items }}
             <div class="result">
-                <h3><a href="{{ .UnescapedUrl }}">{{ .Title }}</a></h3>
+                <h3><a href="{{ .Link }}">{{ .HtmlTitle }}</a></h3>
                 <div>
-                    <div><span>{{ .VisibleUrl }}</span></div>
-                    <p>{{ .Content }}</p>
+                    <div><span>{{ .HtmlFormattedUrl }}</span></div>
+                    <p>{{ .HtmlSnippet }}</p>
                 </div>
             </div>
         {{ end }}
         </div>
         <div class="cursor">
             <ul class="labels">
-            {{ range $index, $element := .SearchResult.ResponseData.Cursor.Pages }}
-            <li>
-                {{ if eq $index $.CurrentPage }}
-                <a class="current" href="/search?q={{ $.Title }}&start={{ $element.Start }}">{{ $element.Label }}</a>
-                {{ else }}
-                <a href="/search?q={{ $.Title }}&start={{ $element.Start }}">{{ $element.Label }}</a>
+                {{ if .Cursor.Previous }}
+                <li>
+                    <a href="/search?q={{ .Keyword }}&start={{ .Cursor.Previous.StartIndex }}">Previous</a>
+                </li>
                 {{ end }}
-            </li>
-            {{ end }}
+                <li>
+                    <a href="/search?q={{ .Keyword }}&start={{ .Cursor.Current.StartIndex }}">Current</a>
+                </li>
+                {{ if .Cursor.Next }}
+                <li>
+                    <a href="/search?q={{ .Keyword }}&start={{ .Cursor.Next.StartIndex }}">Next</a>
+                </li>
+                {{ end }}
             </ul>
+        </div>
+        <div class="search-info">
+            <span>Total results: {{ .SearchResult.SearchInformation.FormattedTotalResults }} , used {{ .SearchResult.SearchInformation.FormattedSearchTime }} s.</span>
         </div>
     </body>
 </html>

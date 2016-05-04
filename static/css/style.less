@@ -195,21 +195,24 @@ html, body{
         ul {
             li {
                 display: inline;
-                margin: 0 5px;
+                margin-right: 10px;
                 a {
                     text-decoration: none;
                     font-size: 14px;
                     color: @color-blue;
-                    padding: 4px 5px 2px;
                     border: 1px solid transparent;
                 }
                 a:hover {
-                    border: 1px solid @color-blue;
+                    color: @color-red;
+                    text-decoration: underline;
                 }
                 .current {
                     border: 1px solid @color-blue;
                 }
             }
         }
+    }
+    .search-info {
+        font-size: 12px;
     }
 }

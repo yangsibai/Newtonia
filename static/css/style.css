@@ -255,18 +255,21 @@ body {
 }
 .search .cursor ul li {
   display: inline;
-  margin: 0 5px;
+  margin-right: 10px;
 }
 .search .cursor ul li a {
   text-decoration: none;
   font-size: 14px;
   color: #3464e3;
-  padding: 4px 5px 2px;
   border: 1px solid transparent;
 }
 .search .cursor ul li a:hover {
-  border: 1px solid #3464e3;
+  color: #d45551;
+  text-decoration: underline;
 }
 .search .cursor ul li .current {
   border: 1px solid #3464e3;
+}
+.search .search-info {
+  font-size: 12px;
 }

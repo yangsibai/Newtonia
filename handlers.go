@@ -19,10 +19,18 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+type Cursor struct {
+	Previous PageInfo
+	Current  PageInfo
+	Next     PageInfo
+}
+
 type PageData struct {
 	Title        string
+	Keyword      string
 	SearchResult SearchResult
-	CurrentPage  uint16
+	CurrentPage  int
+	Cursor       Cursor
 }
 
 func Search(w http.ResponseWriter, r *http.Request) {
@@ -46,7 +54,25 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	pageData := PageData{word, searchResult, searchResult.ResponseData.Cursor.CurrentPageIndex}
+	var currentPageInfo PageInfo
+	var nextPageInfo PageInfo
+	var previousPageInfo PageInfo
+
+	if len(searchResult.Queries.Request) > 0 {
+		currentPageInfo = searchResult.Queries.Request[0]
+	}
+
+	if len(searchResult.Queries.NextPage) > 0 {
+		nextPageInfo = searchResult.Queries.NextPage[0]
+	}
+
+	if len(searchResult.Queries.PreviousPage) > 0 {
+		previousPageInfo = searchResult.Queries.PreviousPage[0]
+	}
+
+	cursor := Cursor{previousPageInfo, currentPageInfo, nextPageInfo}
+
+	pageData := PageData{word, word, searchResult, currentPageInfo.StartIndex/currentPageInfo.Count + 1, cursor}
 
 	if err := tmpl.Execute(w, pageData); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
