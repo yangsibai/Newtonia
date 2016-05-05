@@ -99,7 +99,7 @@ func getStart(r *http.Request) int64 {
 		startAt, _ := strconv.ParseInt(start[0], 10, 32)
 		return startAt
 	}
-	return 0
+	return 1
 }
 
 func getLanguage(r *http.Request) string {
