@@ -11,9 +11,6 @@ import (
 	"strconv"
 )
 
-const apiKey string = "AIzaSyCuCJRJfWuxpNBFi2JJ-c5-lbQ4LZ-eCYk"
-const apiID string = "008502474502499729233:r8wzxwoqj9y"
-
 type PageInfo struct {
 	Title          string `json:"title"`
 	TotalResults   string `json:"totalResults"`
@@ -105,8 +102,8 @@ func GoogleSearch(word string, start int64, userip string, language string) (err
 			return err, result
 		}
 		parameters := url.Values{}
-		parameters.Add("key", apiKey)
-		parameters.Add("cx", apiID)
+		parameters.Add("key", config.Key)
+		parameters.Add("cx", config.ID)
 		parameters.Add("q", word)
 		parameters.Add("start", strconv.Itoa(int(start)))
 		parameters.Add("hl", language)
