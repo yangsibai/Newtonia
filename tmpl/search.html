@@ -26,15 +26,12 @@
         </div>
         <div class="cursor">
             <ul class="labels">
-                {{ if .Cursor.Previous }}
+                {{ if .Cursor.Previous.Count }}
                 <li>
                     <a href="/search?q={{ .Keyword }}&start={{ .Cursor.Previous.StartIndex }}">Previous</a>
                 </li>
                 {{ end }}
-                <li>
-                    <a href="/search?q={{ .Keyword }}&start={{ .Cursor.Current.StartIndex }}">Current</a>
-                </li>
-                {{ if .Cursor.Next }}
+                {{ if .Cursor.Next.Count }}
                 <li>
                     <a href="/search?q={{ .Keyword }}&start={{ .Cursor.Next.StartIndex }}">Next</a>
                 </li>
