@@ -16,7 +16,7 @@
         <div class="results">
         {{ range .SearchResult.Items }}
             <div class="result">
-                <h3><a href="{{ .Link }}">{{ .HtmlTitle }}</a></h3>
+                <h3><a target="_blank" href="{{ .Link }}">{{ .HtmlTitle }}</a></h3>
                 <div>
                     <div><span>{{ .HtmlFormattedUrl }}</span></div>
                     <p>{{ .HtmlSnippet }}</p>
