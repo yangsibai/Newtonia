@@ -19,7 +19,7 @@ var config Configration
 
 func main() {
 	router := NewRouter()
-	log.Printf("Newtonia is listening at %s", config.Port)
+	log.Printf("Newtonia is listening at: %s", config.Port)
 	log.Fatal(http.ListenAndServe(":"+config.Port, router))
 }
 

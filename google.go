@@ -5,6 +5,7 @@ import (
 	"errors"
 	"html/template"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -113,6 +114,10 @@ func GoogleSearch(word string, start int64, userip string, language string) (err
 		res, err := http.Get(Url.String())
 		if err != nil {
 			return err, result
+		}
+		log.Println(res)
+		if res.StatusCode != 200 {
+			return errors.New(res.Status), result
 		}
 		body, err := ioutil.ReadAll(res.Body)
 		res.Body.Close() // must close the body when finished with it
