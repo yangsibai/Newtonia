@@ -73,7 +73,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 
 	cursor := Cursor{previousPageInfo, currentPageInfo, nextPageInfo}
 
-	if currentPageInfo.Count < 0 {
+	if currentPageInfo.Count <= 0 {
 		b, err := json.Marshal(searchResult)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
