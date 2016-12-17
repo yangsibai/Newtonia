@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"html/template"
 	"net/http"
 	"path"
@@ -72,6 +73,16 @@ func Search(w http.ResponseWriter, r *http.Request) {
 
 	cursor := Cursor{previousPageInfo, currentPageInfo, nextPageInfo}
 
+	if currentPageInfo.Count < 0 {
+		b, err := json.Marshal(searchResult)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		w.Write(b)
+		return
+
+	}
 	pageData := PageData{word, word, searchResult, currentPageInfo.StartIndex/currentPageInfo.Count + 1, cursor}
 
 	if err := tmpl.Execute(w, pageData); err != nil {
