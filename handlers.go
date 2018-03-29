@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"html/template"
+	"log"
 	"net/http"
 	"path"
 	"strconv"
@@ -36,6 +37,7 @@ type PageData struct {
 
 func Search(w http.ResponseWriter, r *http.Request) {
 	word := getQuery(r)
+	log.Println(word)
 	if word == "" {
 		http.Redirect(w, r, "/", 307)
 		return
